@@ -5,12 +5,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>martin.karle</groupId>
-  <artifactId>PetClinic</artifactId>
+  <artifactId>pet-clinic</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
-  <name>PetClinic</name>
-  <description>Demo project for Spring Boot</description>
+  <modules>
+    <module>pet-clinic-data</module>
+    <module>pet-clinic-web</module>
+  </modules>
+
+  <packaging>pom</packaging>
+
+  <name>pet-clinic</name>
+  <description>SFG Pet Clinic Project</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -26,25 +32,7 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
 
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -55,6 +43,5 @@
       </plugin>
     </plugins>
   </build>
-
 
 </project>
