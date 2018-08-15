@@ -2,12 +2,12 @@ package martin.karle.petclinic.services.map;
 
 import java.util.Set;
 import martin.karle.petclinic.model.Vet;
-import martin.karle.petclinic.services.CrudService;
+import martin.karle.petclinic.services.VetService;
 
 /**
  * Created by carlosmartinez on 10/8/18 23:54
  */
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
   @Override
   public Set<Vet> findAll() {
