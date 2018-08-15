@@ -3,10 +3,12 @@ package martin.karle.petclinic.services.map;
 import java.util.Set;
 import martin.karle.petclinic.model.Pet;
 import martin.karle.petclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by carlosmartinez on 10/8/18 23:54
  */
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
   @Override
