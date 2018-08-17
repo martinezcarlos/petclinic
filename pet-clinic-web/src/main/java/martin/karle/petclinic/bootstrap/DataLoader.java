@@ -24,21 +24,20 @@ public class DataLoader implements CommandLineRunner {
 
   @Override
   public void run(final String... args) {
-    ownerService.save(createPerson(Owner.class, 1L, "Michael", "Weston"));
-    ownerService.save(createPerson(Owner.class, 2L, "Fiona", "Glenanne"));
+    ownerService.save(createPerson(Owner.class, "Michael", "Weston"));
+    ownerService.save(createPerson(Owner.class, "Fiona", "Glenanne"));
     System.out.println("Loaded Owners...");
 
-    vetService.save(createPerson(Vet.class, 1L, "Sam", "Axe"));
-    vetService.save(createPerson(Vet.class, 2L, "Jessie", "Porter"));
+    vetService.save(createPerson(Vet.class, "Sam", "Axe"));
+    vetService.save(createPerson(Vet.class, "Jessie", "Porter"));
     System.out.println("Loaded Vets...");
   }
 
-  private <T extends Person> T createPerson(final Class<T> clazz, final Long id,
+  private <T extends Person> T createPerson(final Class<T> clazz,
       final String firstName, final String lastName) {
     T t = null;
     try {
       t = clazz.newInstance();
-      t.setId(id);
       t.setFirstName(firstName);
       t.setLastName(lastName);
     } catch (final InstantiationException | IllegalAccessException e) {
