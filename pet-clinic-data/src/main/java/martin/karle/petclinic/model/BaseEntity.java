@@ -1,14 +1,12 @@
 package martin.karle.petclinic.model;
 
 import java.io.Serializable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * Created by carlosmartinez on 5/8/18 21:35
  */
-@Getter
-@Setter
+@Data
 public class BaseEntity implements Serializable {
 
   private Long id;
