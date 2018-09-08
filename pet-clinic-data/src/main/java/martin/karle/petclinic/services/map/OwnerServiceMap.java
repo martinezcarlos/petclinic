@@ -3,6 +3,7 @@ package martin.karle.petclinic.services.map;
 import java.util.Set;
 import martin.karle.petclinic.model.Owner;
 import martin.karle.petclinic.services.OwnerService;
+import martin.karle.petclinic.services.PetService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,6 +11,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+
+  private final PetService petService;
+
+  public OwnerServiceMap(final PetService petService) {
+    this.petService = petService;
+  }
 
   @Override
   public Set<Owner> findAll() {
@@ -23,6 +30,16 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
   @Override
   public Owner save(final Owner entity) {
+    if (entity == null) {
+      throw new RuntimeException("The entity being saved cannot be null");
+    }
+    if (entity.getPets() != null) {
+      entity.getPets().forEach(pet -> {
+        if (pet.getId() == null) {
+          petService.save(pet);
+        }
+      });
+    }
     return super.save(entity);
   }
 

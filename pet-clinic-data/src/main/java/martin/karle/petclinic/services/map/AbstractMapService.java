@@ -24,14 +24,13 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
   }
 
   T save(final T entity) {
-    if (entity != null) {
-      if (entity.getId() == null) {
-        entity.setId(getNextId());
-      }
-      map.put(entity.getId(), entity);
-    } else {
+    if (entity == null) {
       throw new RuntimeException("The entity being saved cannot be null");
     }
+    if (entity.getId() == null) {
+      entity.setId(getNextId());
+    }
+    map.put(entity.getId(), entity);
     return entity;
   }
 

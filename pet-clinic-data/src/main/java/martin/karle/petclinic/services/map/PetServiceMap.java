@@ -3,6 +3,7 @@ package martin.karle.petclinic.services.map;
 import java.util.Set;
 import martin.karle.petclinic.model.Pet;
 import martin.karle.petclinic.services.PetService;
+import martin.karle.petclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,6 +11,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
+
+  private final PetTypeService petTypeService;
+
+  public PetServiceMap(final PetTypeService petTypeService) {
+    this.petTypeService = petTypeService;
+  }
 
   @Override
   public Set<Pet> findAll() {
@@ -23,6 +30,15 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetS
 
   @Override
   public Pet save(final Pet entity) {
+    if (entity == null) {
+      throw new RuntimeException("The entity being saved cannot be null");
+    }
+    if (entity.getPetType() == null) {
+      throw new RuntimeException("The PetType is requiered");
+    }
+    if (entity.getPetType().getId() == null) {
+      petTypeService.save(entity.getPetType());
+    }
     return super.save(entity);
   }
 
