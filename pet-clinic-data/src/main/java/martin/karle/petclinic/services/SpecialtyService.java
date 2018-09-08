@@ -5,5 +5,5 @@ import martin.karle.petclinic.model.Specialty;
 /**
  * Created by carlosmartinez on 8/9/18 20:11
  */
-public interface SpecialtiesService extends CrudService<Specialty, Long> {
+public interface SpecialtyService extends CrudService<Specialty, Long> {
 }

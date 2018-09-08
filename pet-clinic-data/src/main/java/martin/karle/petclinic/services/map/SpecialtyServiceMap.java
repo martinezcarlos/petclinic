@@ -2,7 +2,7 @@ package martin.karle.petclinic.services.map;
 
 import java.util.Set;
 import martin.karle.petclinic.model.Specialty;
-import martin.karle.petclinic.services.SpecialtiesService;
+import martin.karle.petclinic.services.SpecialtyService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SpecialtyServiceMap extends AbstractMapService<Specialty, Long>
-    implements SpecialtiesService {
+    implements SpecialtyService {
 
   @Override
   public Set<Specialty> findAll() {
