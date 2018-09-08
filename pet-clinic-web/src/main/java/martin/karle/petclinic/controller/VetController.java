@@ -6,9 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by carlosmartinez on 11/8/18 1:02
+ * Created by carlosmartinez on 11/vets/8/vets/18 1:02
  */
-@RequestMapping("/vets")
 @Controller
 public class VetController {
 
@@ -18,7 +17,12 @@ public class VetController {
     this.vetService = vetService;
   }
 
-  @RequestMapping({"", "/", "/index", "/index.html"})
+  @RequestMapping({
+      "/vets",
+      "/vets/index",
+      "/vets/index.html",
+      "/vets.html"
+  })
   public String listVets(final Model model) {
     model.addAttribute("vets", vetService.findAll());
     return "vets/index";
