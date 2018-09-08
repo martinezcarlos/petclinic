@@ -2,8 +2,10 @@ package martin.karle.petclinic.bootstrap;
 
 import martin.karle.petclinic.model.Owner;
 import martin.karle.petclinic.model.Person;
+import martin.karle.petclinic.model.PetType;
 import martin.karle.petclinic.model.Vet;
 import martin.karle.petclinic.services.OwnerService;
+import martin.karle.petclinic.services.PetTypeService;
 import martin.karle.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,10 +18,13 @@ public class DataLoader implements CommandLineRunner {
 
   private final OwnerService ownerService;
   private final VetService vetService;
+  private final PetTypeService petTypeService;
 
-  public DataLoader(final OwnerService ownerService, final VetService vetService) {
+  public DataLoader(final OwnerService ownerService, final VetService vetService,
+      final PetTypeService petTypeService) {
     this.ownerService = ownerService;
     this.vetService = vetService;
+    this.petTypeService = petTypeService;
   }
 
   @Override
@@ -31,10 +36,16 @@ public class DataLoader implements CommandLineRunner {
     vetService.save(createPerson(Vet.class, "Sam", "Axe"));
     vetService.save(createPerson(Vet.class, "Jessie", "Porter"));
     System.out.println("Loaded Vets...");
+
+    final PetType dog = new PetType("Dog");
+    petTypeService.save(dog);
+    final PetType cat = new PetType("Cat");
+    petTypeService.save(cat);
+    System.out.println("Loaded PetTypes...");
   }
 
-  private <T extends Person> T createPerson(final Class<T> clazz,
-      final String firstName, final String lastName) {
+  private static <T extends Person> T createPerson(final Class<T> clazz, final String firstName,
+      final String lastName) {
     T t = null;
     try {
       t = clazz.newInstance();

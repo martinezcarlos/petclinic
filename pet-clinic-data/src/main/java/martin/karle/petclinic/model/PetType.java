@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class PetType extends BaseEntity {
 
-  private String name;
+  private final String name;
 }
