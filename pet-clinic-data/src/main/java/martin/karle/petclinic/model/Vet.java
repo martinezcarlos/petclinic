@@ -9,10 +9,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "vets")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Vet extends Person {
 
   @ManyToMany(fetch = FetchType.EAGER)
