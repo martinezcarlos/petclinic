@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "owners")
 @Data
+@EqualsAndHashCode(callSuper = true, exclude = {"pets"})
 public class Owner extends Person {
 
   @Column(name = "address")

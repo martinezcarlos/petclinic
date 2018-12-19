@@ -3,12 +3,17 @@ package martin.karle.petclinic.services.map;
 import java.util.Set;
 import martin.karle.petclinic.model.Specialty;
 import martin.karle.petclinic.services.SpecialtyService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
  * Created by carlosmartinez on 8/9/18 20:13
  */
 @Service
+@Profile({
+    "default",
+    "map"
+})
 public class SpecialtyMapService extends AbstractMapService<Specialty, Long>
     implements SpecialtyService {
 

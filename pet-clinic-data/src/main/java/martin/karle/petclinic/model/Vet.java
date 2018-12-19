@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "vets")
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"specialties"})
 public class Vet extends Person {
 
   @ManyToMany(fetch = FetchType.EAGER)

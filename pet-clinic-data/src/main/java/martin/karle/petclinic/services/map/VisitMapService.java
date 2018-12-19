@@ -4,12 +4,17 @@ import java.util.Set;
 import martin.karle.petclinic.model.Pet;
 import martin.karle.petclinic.model.Visit;
 import martin.karle.petclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**
  * Created by carlosmartinez on 2018-12-19 12:42
  */
 @Service
+@Profile({
+    "default",
+    "map"
+})
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
   @Override

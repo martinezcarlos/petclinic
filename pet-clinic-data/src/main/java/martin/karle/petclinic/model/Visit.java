@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "visits")
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"pet"})
 public class Visit extends BaseEntity {
 
   @Column(name = "date")
