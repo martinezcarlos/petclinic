@@ -22,7 +22,7 @@ public class VetSDJpaService implements VetService {
   @Override
   public Set<Vet> findAll() {
     final Set<Vet> vets = new HashSet<>();
-    vetRepository.findAll().iterator().forEachRemaining(vets::add);
+    vetRepository.findAll().forEach(vets::add);
     return vets;
   }
 

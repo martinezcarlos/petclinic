@@ -8,10 +8,12 @@ import martin.karle.petclinic.model.Pet;
 import martin.karle.petclinic.model.PetType;
 import martin.karle.petclinic.model.Specialty;
 import martin.karle.petclinic.model.Vet;
+import martin.karle.petclinic.model.Visit;
 import martin.karle.petclinic.services.OwnerService;
 import martin.karle.petclinic.services.PetTypeService;
 import martin.karle.petclinic.services.SpecialtyService;
 import martin.karle.petclinic.services.VetService;
+import martin.karle.petclinic.services.VisitService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -25,16 +27,19 @@ public class DataLoader implements CommandLineRunner {
   private final VetService vetService;
   private final PetTypeService petTypeService;
   private final SpecialtyService specialtyService;
+  private final VisitService visitService;
 
   public DataLoader(final OwnerService ownerService, final VetService vetService,
-      final PetTypeService petTypeService, final SpecialtyService specialtyService) {
+      final PetTypeService petTypeService, final SpecialtyService specialtyService,
+      final VisitService visitService) {
     this.ownerService = ownerService;
     this.vetService = vetService;
     this.petTypeService = petTypeService;
     this.specialtyService = specialtyService;
+    this.visitService = visitService;
   }
 
-  private static <T extends Person> T createPerson(final Class<T> clazz, final String firstName,
+  private <T extends Person> T createPerson(final Class<T> clazz, final String firstName,
       final String lastName) {
     T t = null;
     try {
@@ -72,6 +77,10 @@ public class DataLoader implements CommandLineRunner {
     ownerService.save(fiona);
     System.out.println("Loaded Owners...");
 
+    visitService.save(createVisit(LocalDate.now(), "Rosco's visit", mikesPet));
+    visitService.save(createVisit(LocalDate.now(), "Mishi's visit", fionaCat));
+    System.out.println("Loaded Visits...");
+
     final Specialty radiology = new Specialty("Radiology");
     specialtyService.save(radiology);
     final Specialty surgery = new Specialty("Surgery");
@@ -85,7 +94,7 @@ public class DataLoader implements CommandLineRunner {
     System.out.println("Loaded Vets...");
   }
 
-  private static Pet createPet(final String name, final PetType petType) {
+  private Pet createPet(final String name, final PetType petType) {
     final Pet pet = new Pet();
     pet.setName(name);
     pet.setPetType(petType);
@@ -93,8 +102,8 @@ public class DataLoader implements CommandLineRunner {
     return pet;
   }
 
-  private static Owner createOwner(final String firstName, final String lastName,
-      final String address, final String city, final String telephone, final Pet... pets) {
+  private Owner createOwner(final String firstName, final String lastName, final String address,
+      final String city, final String telephone, final Pet... pets) {
     final Owner owner = new Owner();
     owner.setAddress(address);
     owner.setCity(city);
@@ -102,10 +111,19 @@ public class DataLoader implements CommandLineRunner {
     owner.getPets().addAll(Arrays.asList(pets));
     owner.setFirstName(firstName);
     owner.setLastName(lastName);
+    Arrays.stream(pets).forEach(pet -> pet.setOwner(owner));
     return owner;
   }
 
-  private static Vet createVet(final String firstName, final String lastName,
+  private Visit createVisit(final LocalDate visitDate, final String description, final Pet pet) {
+    final Visit visit = new Visit();
+    visit.setDate(visitDate);
+    visit.setDescription(description);
+    visit.setPet(pet);
+    return visit;
+  }
+
+  private Vet createVet(final String firstName, final String lastName,
       final Specialty... specialties) {
     final Vet vet = new Vet();
     vet.getSpecialties().addAll(Arrays.asList(specialties));

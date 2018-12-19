@@ -5,8 +5,6 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import martin.karle.petclinic.model.Owner;
 import martin.karle.petclinic.repositories.OwnerRepository;
-import martin.karle.petclinic.repositories.PetRepository;
-import martin.karle.petclinic.repositories.PetTypeRepository;
 import martin.karle.petclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -20,8 +18,6 @@ import org.springframework.stereotype.Service;
 public class OwnerSDJpaService implements OwnerService {
 
   private final OwnerRepository ownerRepository;
-  private final PetRepository petRepository;
-  private final PetTypeRepository petTypeRepository;
 
   @Override
   public Owner findByLastName(final String lastName) {
@@ -31,7 +27,7 @@ public class OwnerSDJpaService implements OwnerService {
   @Override
   public Set<Owner> findAll() {
     final Set<Owner> owners = new HashSet<>();
-    ownerRepository.findAll().iterator().forEachRemaining(owners::add);
+    ownerRepository.findAll().forEach(owners::add);
     return owners;
   }
 

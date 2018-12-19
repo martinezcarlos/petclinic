@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * Created by carlosmartinez on 8/9/18 14:55
  */
 @Service
-public class PetTypeServiceMap extends AbstractMapService<PetType, Long> implements PetTypeService {
+public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
 
   @Override
   public Set<PetType> findAll() {
