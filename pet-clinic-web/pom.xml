@@ -18,6 +18,7 @@
     <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
     <webjars-jquery.version>2.2.4</webjars-jquery.version>
     <wro4j.version>1.8.0</wro4j.version>
+    <jupiter.version>5.4.0</jupiter.version>
   </properties>
 
   <dependencies>
@@ -141,7 +142,7 @@
           <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.0.3</version>
+            <version>${jupiter.version}</version>
           </dependency>
           <!-- End of Necessary for JUnit 5 -->
         </dependencies>
