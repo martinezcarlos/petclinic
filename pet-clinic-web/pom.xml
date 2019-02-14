@@ -142,6 +142,9 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surfire.version}</version>
+        <configuration>
+          <useSystemClassLoader>false</useSystemClassLoader>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>org.junit.platform</groupId>
