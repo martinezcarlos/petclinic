@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by carlosmartinez on 8/9/18 13:57
@@ -11,6 +12,7 @@ import lombok.Data;
 @Entity
 @Table(name = "specialties")
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Specialty extends BaseEntity {
 
   @Column(name = "description")

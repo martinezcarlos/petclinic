@@ -24,6 +24,14 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
   }
 
   @Override
+  public Owner findByLastName(final String lastName) {
+    return findAll().stream()
+        .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
+        .findFirst()
+        .orElse(null);
+  }
+
+  @Override
   public Set<Owner> findAll() {
     return super.findAll();
   }
@@ -56,10 +64,5 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
   @Override
   public void delete(final Owner entity) {
     super.delete(entity);
-  }
-
-  @Override
-  public Owner findByLastName(final String lastName) {
-    return null;
   }
 }

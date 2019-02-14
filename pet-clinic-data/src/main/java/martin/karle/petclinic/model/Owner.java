@@ -7,12 +7,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "owners")
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true, exclude = {"pets"})
 public class Owner extends Person {
 
@@ -24,4 +31,16 @@ public class Owner extends Person {
   private String telephone;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
   private Set<Pet> pets = new HashSet<>();
+
+  @Builder
+  public Owner(final Long id, final String firstName, final String lastName, final String address,
+      final String city, final String telephone, final Set<Pet> pets) {
+    super(id, firstName, lastName);
+    this.address = address;
+    this.city = city;
+    this.telephone = telephone;
+    if (pets != null) {
+      this.pets.addAll(pets);
+    }
+  }
 }
