@@ -1,5 +1,6 @@
 package martin.karle.petclinic.services.map;
 
+import java.util.List;
 import java.util.Set;
 import martin.karle.petclinic.model.Owner;
 import martin.karle.petclinic.services.OwnerService;
@@ -29,6 +30,12 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
         .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
         .findFirst()
         .orElse(null);
+  }
+
+  @Override
+  public List<Owner> findAllByLastNameLike(final String lastName) {
+    //todo - Implement
+    return null;
   }
 
   @Override
