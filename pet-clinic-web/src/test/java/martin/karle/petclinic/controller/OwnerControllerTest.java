@@ -60,7 +60,7 @@ class OwnerControllerTest {
 
   @Test
   void processFindOwnerReturnMany() throws Exception {
-    when(ownerService.findAllByLastNameLike(anyString())).thenReturn(new ArrayList<>(owners));
+    when(ownerService.findAllByLastName(anyString())).thenReturn(new ArrayList<>(owners));
 
     mockMvc.perform(get("/owners"))
         .andExpect(status().isOk())
@@ -70,7 +70,7 @@ class OwnerControllerTest {
 
   @Test
   void processFindOwnerReturnOne() throws Exception {
-    when(ownerService.findAllByLastNameLike(anyString())).thenReturn(
+    when(ownerService.findAllByLastName(anyString())).thenReturn(
         Collections.singletonList(Owner.builder().id(1L).build()));
 
     mockMvc.perform(get("/owners"))
