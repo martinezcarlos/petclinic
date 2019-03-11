@@ -60,9 +60,9 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private void loadData() {
-    final PetType dog = new PetType("Dog");
+    final PetType dog = PetType.builder().name("Dog").build();
     petTypeService.save(dog);
-    final PetType cat = new PetType("Cat");
+    final PetType cat = PetType.builder().name("Cat").build();
     petTypeService.save(cat);
     System.out.println("Loaded PetTypes...");
 
