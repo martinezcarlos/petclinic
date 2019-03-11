@@ -7,20 +7,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.util.CollectionUtils;
 
-@Entity
-@Table(name = "owners")
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true, exclude = {"pets"})
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@Table(name = "owners")
+@Entity
 public class Owner extends Person {
 
   @Column(name = "address")
@@ -39,7 +38,7 @@ public class Owner extends Person {
     this.address = address;
     this.city = city;
     this.telephone = telephone;
-    if (pets != null) {
+    if (!CollectionUtils.isEmpty(pets)) {
       this.pets = pets;
     }
   }

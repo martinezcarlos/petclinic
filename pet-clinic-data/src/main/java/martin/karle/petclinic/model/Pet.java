@@ -11,12 +11,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
+import org.springframework.util.CollectionUtils;
 
-@Data
-@EqualsAndHashCode(callSuper = true, exclude = {"visits"})
+@Setter
+@Getter
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString(exclude = {"owner"})
 @Table(name = "pets")
 @Entity
@@ -43,7 +48,7 @@ public class Pet extends BaseEntity {
     this.petType = petType;
     this.owner = owner;
     this.birthDate = birthDate;
-    if (visits != null) {
+    if (!CollectionUtils.isEmpty(visits)) {
       this.visits = visits;
     }
   }

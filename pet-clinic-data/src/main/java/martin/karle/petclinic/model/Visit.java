@@ -6,15 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
  * Created by carlosmartinez on 3/9/18 21:48
  */
-@Data
-@EqualsAndHashCode(callSuper = true, exclude = {"pet"})
+@Setter
+@Getter
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString(exclude = {"pet"})
 @Entity
 @Table(name = "visits")

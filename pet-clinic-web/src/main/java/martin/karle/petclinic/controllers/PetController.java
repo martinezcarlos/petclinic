@@ -57,8 +57,8 @@ public class PetController {
   @GetMapping("/pets/new")
   public ModelAndView initCreationForm(final Owner owner) {
     final Pet pet = Pet.builder().build();
-    owner.getPets().add(pet);
     pet.setOwner(owner);
+    owner.getPets().add(pet);
 
     final ModelAndView mav = new ModelAndView(VIEWS_PETS_CREATE_OR_UPDATE_FORM);
     mav.addObject(pet);
@@ -76,8 +76,8 @@ public class PetController {
     if (result.hasErrors()) {
       return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
-    owner.getPets().add(pet);
     pet.setOwner(owner);
+    owner.getPets().add(pet);
     petService.save(pet);
     return "redirect:/owners/" + owner.getId();
   }
