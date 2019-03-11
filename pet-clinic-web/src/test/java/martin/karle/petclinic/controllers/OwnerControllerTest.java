@@ -1,4 +1,4 @@
-package martin.karle.petclinic.controller;
+package martin.karle.petclinic.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;

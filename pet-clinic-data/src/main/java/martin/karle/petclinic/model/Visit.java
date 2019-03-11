@@ -8,14 +8,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * Created by carlosmartinez on 3/9/18 21:48
  */
-@Entity
-@Table(name = "visits")
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"pet"})
+@ToString(exclude = {"pet"})
+@Entity
+@Table(name = "visits")
 public class Visit extends BaseEntity {
 
   @Column(name = "date")

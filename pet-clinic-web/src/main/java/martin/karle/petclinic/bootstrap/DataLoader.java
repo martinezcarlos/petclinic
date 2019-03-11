@@ -95,7 +95,7 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private Pet createPet(final String name, final PetType petType) {
-    final Pet pet = new Pet();
+    final Pet pet = Pet.builder().build();
     pet.setName(name);
     pet.setPetType(petType);
     pet.setBirthDate(LocalDate.now());

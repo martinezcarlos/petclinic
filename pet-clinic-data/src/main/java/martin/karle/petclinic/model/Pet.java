@@ -10,13 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-@Entity
-@Table(name = "pets")
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"visits"})
+@ToString(exclude = {"owner"})
+@Table(name = "pets")
+@Entity
 public class Pet extends BaseEntity {
 
   @Column(name = "name")
@@ -31,4 +34,19 @@ public class Pet extends BaseEntity {
   private LocalDate birthDate;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
   private Set<Visit> visits = new HashSet<>();
+
+  @Builder
+  public Pet(final Long id, final String name, final PetType petType, final Owner owner,
+      final LocalDate birthDate, final Set<Visit> visits) {
+    super(id);
+    this.name = name;
+    this.petType = petType;
+    this.owner = owner;
+    this.birthDate = birthDate;
+    if (visits != null) {
+      this.visits = visits;
+    }
+  }
 }
+
+
