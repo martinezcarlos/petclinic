@@ -13,11 +13,8 @@
   <artifactId>pet-clinic-data</artifactId>
 
   <properties>
-    <surfire.version>2.22.0</surfire.version>
-    <mockito.version>2.23.0</mockito.version>
     <jupiter.version>5.4.0</jupiter.version>
-    <jupiter.engine.version>5.4.0-M1</jupiter.engine.version>
-    <lombok.version>1.18.6</lombok.version>
+    <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
   </properties>
 
   <dependencies>
@@ -39,7 +36,7 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
-      <version>${lombok.version}</version>
+      <!--<version>${lombok.version}</version>-->
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -70,7 +67,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
-      <version>${mockito.version}</version>
+      <!--<version>${mockito.version}</version>-->
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -85,27 +82,8 @@
             <goals>
               <goal>repackage</goal>
             </goals>
-            <configuration>
-              <skip>true</skip>
-            </configuration>
           </execution>
         </executions>
-      </plugin>
-      <!-- Necessary for JUnit 5 -->
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surfire.version}</version>
-        <configuration>
-          <useSystemClassLoader>false</useSystemClassLoader>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${jupiter.engine.version}</version>
-          </dependency>
-          <!-- End of Necessary for JUnit 5 -->
-        </dependencies>
       </plugin>
     </plugins>
   </build>
