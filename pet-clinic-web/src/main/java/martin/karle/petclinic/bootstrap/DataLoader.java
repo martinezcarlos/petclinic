@@ -1,5 +1,6 @@
 package martin.karle.petclinic.bootstrap;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import martin.karle.petclinic.model.Owner;
@@ -43,10 +44,10 @@ public class DataLoader implements CommandLineRunner {
       final String lastName) {
     T t = null;
     try {
-      t = clazz.newInstance();
+      t = clazz.getConstructor().newInstance();
       t.setFirstName(firstName);
       t.setLastName(lastName);
-    } catch (final InstantiationException | IllegalAccessException e) {
+    } catch (final InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
       e.printStackTrace();
     }
     return t;

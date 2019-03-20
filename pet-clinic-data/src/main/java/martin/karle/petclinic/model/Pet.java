@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.CollectionUtils;
 
 @Setter
@@ -35,6 +36,7 @@ public class Pet extends BaseEntity {
   @ManyToOne
   @JoinColumn(name = "owner_id")
   private Owner owner;
+  @DateTimeFormat(pattern = "dd-MM-yyyy")
   @Column(name = "birth_date")
   private LocalDate birthDate;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")

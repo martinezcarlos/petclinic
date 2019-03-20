@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en"
-      th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+<html lang="en" th:replace="~{fragments/layout :: layout (~{::body},'vets')}"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>List of Vets</title>
 </head>
 <body>
-  <!-- /*@thymesVar id="vet" type="martin.karle.petclinic.model.Vet" */ -->
-  <h1 th:text="'List of Vets'">List of vets...</h1>
-  <table class="table table-striped">
+  <h2>Veterinarians</h2>
+  <table class="table table-striped" id="vets">
     <thead>
       <tr>
-        <th style="width: 150px;">Id</th>
-        <th style="width: 150px;">First Name</th>
-        <th style="width: 150px;">Last Name</th>
+        <th>Name</th>
+        <th>Specialties</th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="vet : ${vets}">
-        <td th:text="${vet.id}">1</td>
-        <td th:text="${vet.firstName}">Carlos</td>
-        <td th:text="${vet.lastName}">Martínez</td>
+        <td th:text="${vet.firstName + ' ' + vet.lastName}">George Lucas</td>
+        <td><span th:each="specialty : ${vet.specialties}"
+                  th:text="${specialty.description + ' '}">Specialty 1</span>
+          <span th:if="${vet?.specialties?.size() == 0}">none</span>
+        </td>
       </tr>
     </tbody>
   </table>
